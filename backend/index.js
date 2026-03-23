@@ -10,19 +10,21 @@ app.use(cors());
 app.use(express.json());
 
 //routes
-app.use("/api",AirlineRoute);
+app.use("/api", AirlineRoute);
 
+// Start server first so Render doesn't time out
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
+
+// Then connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
-.then(()=>{
+.then(() => {
     console.log("Connected to database!");
-    // CHANGE THIS LINE: Use Render's PORT or default to 3000
-    const port = process.env.PORT || 3000;
-    app.listen(port, () => {
-        console.log(`Server is running on port ${port}`);
-    });
 })
-.catch(()=>{
-    console.log("Connection failed!");
+.catch((err) => {
+    console.log("Connection failed!", err.message);
 });
 
 
