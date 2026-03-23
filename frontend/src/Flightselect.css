@@ -1,0 +1,240 @@
+@keyframes flyPlane {
+    0% {
+      transform: translateX(-100%);
+    }
+    50% {
+      transform: translateX(50%) translateY(-20px) scale(1.2);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+.flightselect{
+    padding-top:4rem;
+    background-color: #f7f8fa;
+    min-height: 100vh;
+}
+
+.flightdeatils_review{
+    margin: 16px 40px 0px 40px;
+    padding: 0px 30px 0px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #e8e8ee;
+    border-radius: 0.75rem;
+    background-color: #ffffff;
+    transition: box-shadow 0.2s ease;
+}
+.flight_details_1{
+    display: flex;
+    flex-direction: row;
+    height: 5rem;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+}
+.flightdeatils_review:hover{
+    border-color: #4361ee;
+    box-shadow: 0 2px 8px rgba(67, 97, 238, 0.1);
+}
+.flight_details_left_1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 600px;
+}
+.from_details_1{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+}
+.flight_duration_symbol_1{
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.dot_1 {
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+}
+.line_1 {
+    flex-grow: 1;
+    border-bottom: 2px dotted #ccc;
+    position: relative;
+    margin-left: 10px; 
+    margin-right: 20px; 
+}
+.plane_1 {
+    font-size: 24px;
+    position: absolute;
+    right: 0;
+    margin-bottom: 1px;
+    color: #aaa;
+    animation: flyPlane 5s ease-in-out infinite;
+}
+.flight_duration_1{
+    position: absolute;
+    align-items: center;
+    left: 130px;
+    z-index: 100;
+    color: #777;
+    font-size: 0.85rem;
+}
+.to_details_1{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+}
+.time_1{
+    padding-top: 10px;
+    font-size: 20px;
+    color: #1a1a2e;
+}
+.time_1 span {
+    white-space: nowrap;
+  }
+.airport-name{
+    padding-bottom: 10px;
+    font-size: 15px;
+    color: #777;
+}
+.flight_number{
+    align-items: center;
+    align-content: center;
+    margin-left: -30px;
+    color: #999;
+    font-size: 0.85rem;
+}
+.flight_details_middle{
+    align-content: center;
+    font-weight: 500;
+    font-size: 14px;
+    color: #4361ee;
+}
+.flight_details_right_1{
+    align-content: center;
+    font-weight: 600;
+    font-size: 20px;
+    color: #1a1a2e;
+}
+#left{
+    margin-left : 1rem;
+}
+.book_now{
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #4361ee;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: background 0.2s ease;
+}
+.book_now:hover{
+    background-color: #3a56d4;
+}
+.reviews {
+    margin-top: 10px;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    position: relative;
+}
+.review-text{
+    padding-bottom: 0.8rem;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.no-flights{
+    font-size: 1.5rem;
+    margin: 2rem;
+    color: #777;
+    text-align: center;
+}
+
+.review {
+    padding-top: 10px;
+    padding-left: 10px;
+    border: 1px solid #e8e8ee;
+    border-radius: 0.5rem;
+    background-color: #ffffff;
+    transition: background-color 0.2s ease;
+    margin-bottom : 1rem;
+}
+
+.review:hover {
+    background-color: #f7f8fa;
+}
+
+.review-text {
+    margin: 2px;
+    font-size: 0.9rem;
+}
+
+.review-text span {
+    font-weight: bold;
+    color: #4361ee;
+}
+
+.review-summary {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.login-message{
+    margin-bottom: 1rem;
+    color: #e53e3e;
+    font-size: 0.9rem;
+}
+
+@media screen and (max-width: 1000px) {
+    .flight_details {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .flight_details_left {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .flight_details_middle, .flight_details_right, .book_now {
+        width: 100%;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .book_now {
+        position: static;
+    }
+
+    .flight_duration_symbol {
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 10px;
+    }
+
+    .flight_duration {
+        position: static;
+        margin-top: 10px;
+    }
+}

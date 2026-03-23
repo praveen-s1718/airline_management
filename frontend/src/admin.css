@@ -1,0 +1,344 @@
+.header_4 {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e8e8ee;
+    color: #1a1a2e;
+    padding: 2rem;
+    text-align: center;
+    font-size: 16px;
+}
+
+.main_4 {
+    padding: 20px;
+    background-color: #f7f8fa;
+    min-height: calc(100vh - 80px);
+}
+
+.nav_4 {
+    margin-bottom: 20px;
+}
+.delete_4{
+    display: flex;
+    align-items: center;
+    margin-top : 1rem;
+}
+
+#add{
+    margin-top: 0.5rem;
+    font-size: 1rem;
+}
+
+.nav_4 button {
+    padding: 0.7rem 1.2rem;
+    margin: 5px;
+    border: 1px solid #e8e8ee;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    background-color: #ffffff;
+    color: #1a1a2e;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.nav_4 button:hover {
+    background-color: #4361ee;
+    color: #ffffff;
+    border-color: #4361ee;
+}
+
+.hidden_4 {
+    display: none;
+}
+
+#view-flights-section , #manage-flights-section , #view-airports-section , #manage-airports-section{
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 0.75rem;
+    border: 1px solid #e8e8ee;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.down{
+    margin-top: 0.2rem;
+}
+
+.group_1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap : 0.4rem;
+}
+
+.group{
+    text-align: center;
+    align-items: center;
+}
+
+#manage-flights-section form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+.setting{
+    display : flex;
+    align-items: center;
+    gap : 0.5rem;
+    margin-top : 1rem;
+}
+
+#manage-airports-section form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+#manage-flights-section form label {
+    grid-column: span 2;
+    color: #1a1a2e;
+    font-weight: 500;
+}
+
+#manage-airports-section form label{
+    grid-column: span 2;
+    color: #1a1a2e;
+    font-weight: 500;
+}
+
+#manage-airports-section form button {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+}
+
+#manage-airports-section form input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    font-family: 'Inter', sans-serif;
+}
+
+#manage-flights-section form input{
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    font-family: 'Inter', sans-serif;
+}
+
+#manage-flights-section form button{
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+}
+
+#manage-flights-section form button {
+    grid-column: span 2;
+    width: 50%;
+    background-color: #4361ee;
+    font-weight: 600;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+    font-family: 'Inter', sans-serif;
+    transition: background 0.2s ease;
+}
+
+#manage-airports-section form button {
+    grid-column: span 2;
+    width: 45%;
+    background-color: #4361ee;
+    font-weight: 600;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    font-family: 'Inter', sans-serif;
+    transition: background 0.2s ease;
+}
+
+#manage-airports-section form button:hover {
+    background-color: #3a56d4;
+}
+
+#manage-flights-section form button:hover {
+    background-color: #3a56d4;
+}
+
+#flight-number{
+    margin-left : 1rem;
+    width : 79%
+}
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+}
+
+.left_4{
+    margin-left : 1rem;
+}
+
+.modal-content {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 1rem;
+    text-align: center;
+    border: 1px solid #e8e8ee;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 90%;
+}
+
+.modal-content label {
+    display: block;
+    margin: 1rem;
+    color: #1a1a2e;
+}
+
+.modal-content button {
+    margin: 10px 5px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+}
+
+.modal-content button:hover {
+    opacity: 0.85;
+}
+
+#add-flight-btn,
+#delete-flight-btn,
+#add-daily-flight-btn,
+#add-weekly-flight-btn,
+#add-airport-btn,
+#delete-airport-btn{
+    background-color: #4361ee;
+    font-weight: 600;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    padding: 0.7rem 1.2rem;
+    margin-right: 0.5rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    font-family: 'Inter', sans-serif;
+    transition: background 0.2s ease;
+}
+
+#add-flight-btn:hover,
+#delete-flight-btn:hover,
+#add-airport-btn:hover,
+#delete-airport-btn:hover{
+    background-color: #3a56d4;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #e8e8ee;
+}
+
+td {
+    padding: 8px;
+    text-align: center;
+    color: #555;
+    font-size: 0.88rem;
+}
+
+th {
+    padding: 10px;
+    text-align: center;
+    background-color: #f7f8fa;
+    font-weight: 600;
+    color: #1a1a2e;
+    font-size: 0.88rem;
+}
+
+button.delete-btn, button.edit-btn {
+    padding: 5px 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+button.delete-btn {
+    background-color: #e53e3e;
+    color: white;
+}
+
+button.edit-btn {
+    background-color: #38a169;
+    color: white;
+}
+
+#view-flights-section label,
+#view-airports-section label{
+    font-size: 1rem;
+    font-weight: 500;
+    color: #1a1a2e;
+}
+
+#view-date,
+#view-country{
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+}
+
+#view-flights-submit-btn,
+#view-airports-submit-btn{
+    background-color: #4361ee;
+    font-weight: 600;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    padding: 0.6rem 1.2rem;
+    margin-left: 0.5rem;
+    border-radius: 0.5rem;
+    font-family: 'Inter', sans-serif;
+    transition: background 0.2s ease;
+}
+
+#view-flights-submit-btn_4{
+    background-color: #4361ee;
+    font-weight: 600;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    padding: 0.6rem 1.2rem;
+    margin-left: 0rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    font-family: 'Inter', sans-serif;
+    transition: background 0.2s ease;
+}
+
+#view-flights-submit-btn:hover,
+#view-airports-submit-btn:hover{
+    background-color: #3a56d4;
+}

@@ -1,0 +1,481 @@
+.outerDiv{
+    margin:0;
+    padding:0;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f7f8fa;
+}
+
+.BookingDetails{
+    margin-bottom: 0.5rem;
+}
+
+.container_1 {
+    width: 100%;
+    height: 100%;
+    background-color:#ffffff;
+}
+
+.Date_3{
+    margin-top : 1rem;
+}
+
+#gap_2{
+    display: flex;
+    align-items: center;
+    gap : 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.flightdetailsWithid_2{
+    display: flex;
+    flex-direction: column;
+    padding : 1rem;
+    background-color: #ffffff;
+    border: 1px solid #e8e8ee;
+    border-radius: 0.75rem;
+}
+
+.flightdetailsWithid_1{
+    display: flex;
+    flex-direction: column;
+    padding : 1rem;
+    background-color: #ffffff;
+    border: 1px solid #e8e8ee;
+    border-radius: 0.75rem;
+}
+
+.flight-details_3{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 5.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border: 1px solid #e8e8ee;
+    border-radius: 0.75rem;
+    margin-top : 1rem;
+}
+
+.flightdetailsWithid_4{
+    display: flex;
+    flex-direction: column;
+    padding : 1rem;
+    background-color: #ffffff;
+    border: 1px solid #e8e8ee;
+    border-radius: 0.75rem;
+    padding-bottom: 2rem;
+}
+
+#heading_2{
+    background-color: #ffffff;
+    border-bottom: 1px solid #e8e8ee;
+    padding-top:6rem ;
+    padding-bottom: 4rem;
+    padding-left: 2rem;
+}
+
+.page-heading {
+    color: #1a1a2e;
+    font-weight: 700;
+    font-size: 2.5em;
+    margin-bottom: 0;
+}
+
+.viewprofile{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    margin-top: 0.5rem;
+}
+
+.viewprofile img{
+    width: 1rem;
+    height: 1rem;
+}
+
+.btn-primary {
+    background-color: #4361ee;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    color: #ffffff;
+    margin-top: 0;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    transition: background 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #3a56d4;
+}
+
+.btn-secondary {
+    width: 100%;
+    background-color: #ffffff;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid #e8e8ee;
+    font-size: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 0;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    color: #1a1a2e;
+}
+
+.btn-secondary:hover {
+    background-color: #f7f8fa;
+}
+
+.btn-secondary img{
+    width: 2rem;
+    height: 2rem;
+    margin-left: 2rem;
+    margin-right: 1rem;
+}
+
+.text{
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.detail-item {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.detail-item label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #1a1a2e;
+    font-size: 0.88rem;
+}
+
+.detail-item input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    font-size: 0.9rem;
+    display: block;
+    font-family: 'Inter', sans-serif;
+    background: #f7f8fa;
+}
+
+.detail-item input:focus {
+    border-color: #4361ee;
+    outline: none;
+    background: #ffffff;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 10px 20px 10px;
+    padding: 0.25rem 0.5rem;
+    border-radius: 2rem;
+    background-color: #f7f8fa;
+    border: 1px solid #e8e8ee;
+}
+
+.tab-btn {
+    background-color: transparent;
+    color: #555;
+    border: none;
+    border-radius: 1rem;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0.5rem 2rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+}
+
+.tab-btn.active {
+    border: none;
+    background-color: #4361ee;
+    color: #ffffff;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    padding: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: #f7f8fa;
+}
+
+.tab-content h3 {
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: #1a1a2e;
+}
+
+.back{
+    border: none;
+    background-color: transparent;
+}
+
+.back img{
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+}
+
+.profile-header{
+    display:flex;
+    flex-direction: row;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e8e8ee;
+    padding: 2rem;
+    align-items: center;
+    padding-top: 4rem;
+    padding-bottom: 3rem;
+}
+
+.profile-header h1{
+    margin-left: 10px;
+    color: #1a1a2e;
+}
+
+.details{
+    padding: 2rem 2rem 0rem 2rem;
+}
+
+.save{
+    background-color: #4361ee;
+    color: #ffffff;
+    width: 100%;
+    border: none;
+    padding: 0.8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    font-family: 'Inter', sans-serif;
+    transition: background 0.2s ease;
+}
+
+.save:hover{
+    background-color: #3a56d4;
+}
+
+.trips-header{
+    display:flex;
+    flex-direction: row;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e8e8ee;
+    padding: 2rem;
+    align-items: center;
+    padding-top: 4rem;
+    padding-bottom: 3rem;
+}
+
+.trips-header h1{
+    margin-left: 10px;
+    color: #1a1a2e;
+}
+
+.trip-details{
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    border-radius: 0.75rem;
+    padding: 1rem;
+    gap: 1rem; 
+    margin-bottom: 1rem;
+    border: 1px solid #e8e8ee;
+    background: #ffffff;
+}
+
+.date{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f8fa;
+    width: 90px; 
+    height: 110px; 
+    margin-right: 1rem; 
+    border: none;
+    border-radius: 50%;
+    font-size: 14px;
+    text-align: center;
+    color: #555;
+}
+
+.flight-details_2{
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    color: #1a1a2e;
+}
+
+.itinerary{
+    display: flex;
+    flex-direction: row;
+    cursor : pointer;
+}
+
+.itinerary p{
+    font-size: 1rem;
+    color: #4361ee;
+}
+
+.itinerary img {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+#nav{
+    text-decoration: none;
+    color: #1a1a2e;
+    margin-left : 2rem;
+}
+
+.airport-details{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+#view{
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    padding-left: 0.2rem;
+    padding-right: 0.3rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    color: #4361ee;
+}
+
+.flight_details_2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 60%;
+    margin-top : 1rem;
+    margin-bottom: 1rem;
+}
+
+.from_details_2{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+}
+
+.flight_duration_symbol_2 {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 10px 0 10px;
+}
+
+.dot_2 {
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+}
+
+.line_2 {
+    flex-grow: 1;
+    border-bottom: 2px solid #ccc;
+    position: relative;
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+.flight_duration_2{
+    position: absolute;
+    left: 40%;
+    top:1px;
+    color: #777;
+}
+
+.plane_2 {
+    font-size: 24px;
+    color: #ccc;
+    position: absolute;
+    right: 0;
+}
+
+.to_details_2{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.time_2{
+    font-size: 20px;
+    color: #1a1a2e;
+}
+
+.airport-name_2{
+    font-size: 15px;
+    color: #777;
+}
+
+.baggage_details h3{
+    margin-bottom: 1rem;
+    font-size: 17px;
+    color: #1a1a2e;
+}
+
+.baggage_details p{
+    margin-bottom: 1rem;
+    font-size: 15px;
+    color: #555;
+}
+
+.cancel_btn{
+    padding: 0.7rem 1.5rem;
+    background-color: #e53e3e;
+    color: #ffffff;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top : 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: background 0.2s ease;
+}
+
+.cancel_btn:hover{
+    background-color: #c53030;
+}
+
+.update-message{
+    display : flex;
+    justify-content: center;
+    margin-bottom : 1rem;
+    font-size : 1rem;
+    color: #555;
+}

@@ -1,0 +1,62 @@
+.check-in {
+  background-color: #ffffff;
+  border: 1px solid #e8e8ee;
+  border-radius: 1rem;
+  width: 50%;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.check-in label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.check-in input {
+  padding: 0.6rem 0.8rem;
+  margin-left: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  background: #f7f8fa;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease;
+}
+
+.check-in input:focus {
+  outline: none;
+  border-color: #4361ee;
+  background: #ffffff;
+}
+
+.gap_4{
+  margin-top: 1.2rem;
+  display: flex;
+  gap: 0.8rem;
+}
+
+.check-in button {
+  padding: 0.6rem 1.5rem;
+  border: none;
+  background-color: #4361ee;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: background 0.2s ease;
+}
+
+.check-in button:hover {
+  background-color: #3a56d4;
+}
+
+.message_1{
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #555;
+}
