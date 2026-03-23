@@ -6,7 +6,11 @@ const AirlineRoute = require('./airline.route.js');
 const app = express();
 
 //middleware
-app.use(cors());
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 //routes
