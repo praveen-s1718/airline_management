@@ -20,7 +20,7 @@ const ProfileDetails = () => {
   }, [UserName]);
 
   const fetchProfileData = () => {
-    fetch(`https://airline-management-2.onrender.com/api/passengers/${UserName}`)
+    fetch(`https://airline-management-tco0.onrender.com/api/passengers/${UserName}`)
       .then(response => response.json())
       .then(data => {
         console.log('Fetched profile data:', data);
@@ -43,7 +43,7 @@ const ProfileDetails = () => {
 
   const toggleEdit = () => {
     if (isEditable) {
-      fetch(`https://airline-management-2.onrender.com/api/passengers/${UserName}`, {
+      fetch(`https://airline-management-tco0.onrender.com/api/passengers/${UserName}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

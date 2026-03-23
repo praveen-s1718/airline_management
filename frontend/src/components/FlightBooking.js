@@ -26,7 +26,7 @@ const FlightBooking = () => {
     useEffect(() => {
         const fetchCities = async () => {
             try {
-                const response = await fetch('https://airline-management-2.onrender.com/api/airports');
+                const response = await fetch('https://airline-management-tco0.onrender.com/api/airports');
                 const data = await response.json();
                 const cityNames = data.map(airport => airport.city);
                 setCities(cityNames);
@@ -76,7 +76,7 @@ const FlightBooking = () => {
                     to: seg.to,
                     date: seg.date
                 }));
-                fetch('https://airline-management-2.onrender.com/api/flights/multicity', {
+                fetch('https://airline-management-tco0.onrender.com/api/flights/multicity', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ segments: segmentsPayload })
@@ -102,7 +102,7 @@ const FlightBooking = () => {
             return;
         }
         try {
-            fetch(`https://airline-management-2.onrender.com/api/flightsavailable?from=${from}&to=${to}&startDate=${departDate}&endDate=${returnDate}&tripType=${ways}`)
+            fetch(`https://airline-management-tco0.onrender.com/api/flightsavailable?from=${from}&to=${to}&startDate=${departDate}&endDate=${returnDate}&tripType=${ways}`)
                 .then((response) => response.json())
                 .then((data) => {
                     localStorage.setItem('flightSearchResults', JSON.stringify(data));

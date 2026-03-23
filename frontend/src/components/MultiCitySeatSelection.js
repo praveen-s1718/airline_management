@@ -17,7 +17,7 @@ const MultiCitySeatSelection = () => {
             
             // Fetch available seats for all flights
             parsedFlights.forEach((flight, index) => {
-                fetch(`https://airline-management-2.onrender.com/api/flights/${flight.flightNumber}/seats`)
+                fetch(`https://airline-management-tco0.onrender.com/api/flights/${flight.flightNumber}/seats`)
                     .then((response) => response.json())
                     .then((data) => {
                         setAvailableSeatsBySegment(prev => ({

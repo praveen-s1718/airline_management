@@ -25,7 +25,7 @@ const SeatSelection = () => {
 
     const fetchAvailableSeats = () => {
         try {
-            fetch(`https://airline-management-2.onrender.com/api/flights/${info.flightNumber}/seats`)
+            fetch(`https://airline-management-tco0.onrender.com/api/flights/${info.flightNumber}/seats`)
             .then((response) => response.json())
             .then((data) => {
                 setAvailableSeats(data.economy);

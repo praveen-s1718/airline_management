@@ -42,7 +42,7 @@ const MultiCityConfirmation = () => {
           price: flight.price.economy
         }));
 
-        const response = await fetch(`https://airline-management-2.onrender.com/api/itineraries`, {
+        const response = await fetch(`https://airline-management-tco0.onrender.com/api/itineraries`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
