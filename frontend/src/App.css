@@ -13,6 +13,7 @@ body {
   background-color: #f7f8fa;
   color: #1a1a2e;
   -webkit-font-smoothing: antialiased;
+  padding-top: 4rem; /* Offset for fixed navbar */
 }
 
 /* ===========================

@@ -32,7 +32,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
             localStorage.setItem('token', true);
             localStorage.setItem('username', username);
             setIsLoggedIn(true);
-            navigate(-1);
+            navigate('/');
         } catch (error) {
             setMessage(error.message || 'Signup failed. Please try again.');
         }
@@ -57,7 +57,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
             localStorage.setItem('token', true);
             localStorage.setItem('username', username);
             setIsLoggedIn(true);
-            navigate(-1);
+            navigate('/');
         } catch (error) {
             setMessage(error.message || 'Login failed. Please try again.');
         }

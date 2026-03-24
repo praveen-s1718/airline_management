@@ -23,7 +23,9 @@ import MultiCitySeatSelection from './components/MultiCitySeatSelection';
 import MultiCityConfirmation from './components/MultiCityConfirmation';
 
 const App = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(() => {
+        return localStorage.getItem('token') === 'true';
+    });
 
     return (
         <Router>
@@ -49,7 +51,7 @@ const AppContent = ({ isLoggedIn, setIsLoggedIn }) => {
                 <Route exact path="/MultiCitySeatSelection" element={<MultiCitySeatSelection />} />
                 <Route exact path="/MultiCityConfirmation" element={<MultiCityConfirmation />} />
 
-                <Route exact path="/Profile" element={<Profile />} />
+                <Route exact path="/Profile" element={<Profile setIsLoggedIn={setIsLoggedIn} />} />
                 <Route exact path="/ProfileDetails" element={<ProfileDetails />} />
                 <Route exact path="/Trips" element={<Trips />} />
                 <Route exact path='/CheckIn' element={<CheckIn/>} />

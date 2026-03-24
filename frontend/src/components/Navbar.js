@@ -10,6 +10,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
     const handleLogout = () => {
         setIsLoggedIn(false);
         localStorage.removeItem('token');
+        localStorage.removeItem('username');
     };
 
     useEffect(() => {
@@ -38,10 +39,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
                     <Link to="/Reviews_Ratings" className={isActive('/Reviews_Ratings') ? 'nav-active' : ''}>Reviews</Link>
                     <Link to="/RR" className={isActive('/RR') ? 'nav-active' : ''}>Feedback</Link>
                     {isLoggedIn ? (
-                        <>
-                            <Link to="/Profile" className={isActive('/Profile') ? 'nav-active' : ''}>My Profile</Link>
-                            <a onClick={handleLogout} href="#!" style={{ cursor: 'pointer' }}>Logout</a>
-                        </>
+                        <Link to="/Profile" className={isActive('/Profile') ? 'nav-active' : ''}>Profile</Link>
                     ) : (
                         <Link to="/login" className={isActive('/login') ? 'nav-active' : ''}>Login</Link>
                     )}
