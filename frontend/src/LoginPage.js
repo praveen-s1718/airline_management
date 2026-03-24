@@ -79,6 +79,9 @@ const LoginPage = ({ setIsLoggedIn }) => {
             if (!response.ok) {
                 throw new Error(data.error || 'Admin login failed');
             }
+            localStorage.setItem('token', true);
+            localStorage.setItem('username', username);
+            setIsLoggedIn(true);
             navigate('/Admin');
         } catch (error) {
             setMessage(error.message || 'Admin Login failed. Please try again.');

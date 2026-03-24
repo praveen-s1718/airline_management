@@ -39,7 +39,11 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
                     <Link to="/Reviews_Ratings" className={isActive('/Reviews_Ratings') ? 'nav-active' : ''}>Reviews</Link>
                     <Link to="/RR" className={isActive('/RR') ? 'nav-active' : ''}>Feedback</Link>
                     {isLoggedIn ? (
-                        <Link to="/Profile" className={isActive('/Profile') ? 'nav-active' : ''}>Profile</Link>
+                        localStorage.getItem('username') === 'admin' ? (
+                            <Link to="/Admin" className={isActive('/Admin') ? 'nav-active' : ''}>Dashboard</Link>
+                        ) : (
+                            <Link to="/Profile" className={isActive('/Profile') ? 'nav-active' : ''}>Profile</Link>
+                        )
                     ) : (
                         <Link to="/login" className={isActive('/login') ? 'nav-active' : ''}>Login</Link>
                     )}
