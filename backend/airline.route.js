@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
+const { verifyToken, verifyAdmin, verifyPassenger } = require('./authMiddleware');
 const {allAirports,AirportbyId,newAirport,UpdateAirport,deleteAirport,allFlights,FlightbyId,
     newFlight,updateFlight,cancelFlight,createAdmin,adminAuthentication,createPassenger,passengerAuthentication,
     availableFlights,availableSeats,allBookings,BookingbyId,newBooking,deleteBooking,updateBooking,allPassengers,
     pasengerbyId,updatePassenger,deletePassenger,updateCheckinStatus,addReview,newFlightbyId,allReviews,confirmedBookings,completedBookings,
     cancelledBookings,AirportsbyCountry,dailyFlight,weeklyFlight,FlightbyDate,
-    searchMultiCityFlights, bookItinerary
+    searchMultiCityFlights, bookItinerary, searchCities, saveRecentSearch, getRecentSearches, clearRecentSearches
 } = require('./airline.controller.js');
 
 // GET all airports
@@ -74,20 +75,20 @@ router.post('/itineraries', bookItinerary);
 //Create (POST) - Add a New Passenger
 // router.post('/passengers', ); 
 //Read (GET) - Get All Passengers
-router.get('/passengers', allPassengers);
+router.get('/passengers', verifyAdmin, allPassengers);
 // Get a Single Passenger by ID
-router.get('/passengers/:id', pasengerbyId);
+router.get('/passengers/:id', verifyToken, pasengerbyId);
 //Update (PUT) - Update a Passenger
-router.put('/passengers/:id', updatePassenger);
+router.put('/passengers/:id', verifyToken, updatePassenger);
 //Delete (DELETE) - Remove a Passenger
-router.delete('/passengers/:id', deletePassenger);
+router.delete('/passengers/:id', verifyAdmin, deletePassenger);
 
 // GET confirmed bookings of a passenger
-router.get('/bookings/confirmed/:id',confirmedBookings);
+router.get('/bookings/confirmed/:id', verifyToken, confirmedBookings);
 // GET completed bookings of a passenger
-router.get('/bookings/completed/:id',completedBookings);
+router.get('/bookings/completed/:id', verifyToken, completedBookings);
 // GET cancelled bookings of a passenger
-router.get('/bookings/cancelled/:id',cancelledBookings);
+router.get('/bookings/cancelled/:id', verifyToken, cancelledBookings);
 
 
 //update checkin status
@@ -96,6 +97,18 @@ router.put('/checkin/:id', updateCheckinStatus);
 router.get('/reviews',allReviews);
 // POST endpoint to submit a review
 router.put('/addreviews/:id', addReview); 
+
+// CITY SEARCH ENDPOINTS
+// Search for cities by partial query for flight search suggestions
+router.get('/cities/search', searchCities);
+
+// RECENT SEARCHES ENDPOINTS
+// Save a recent search for a passenger
+router.post('/searches/recent', verifyToken, saveRecentSearch);
+// Get recent searches for a passenger
+router.get('/searches/recent', verifyToken, getRecentSearches);
+// Clear recent searches for a passenger
+router.delete('/searches/recent', verifyToken, clearRecentSearches);
 
 module.exports = router;
 

@@ -1,4 +1,6 @@
+require('dotenv').config();
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const cron = require('node-cron');
 const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
@@ -455,7 +457,24 @@ const adminAuthentication = async (req, res) => {
 
         // Compare the hashed password
         const isAuthenticated = await bcrypt.compare(password, admin.hashedPassword);
-        res.status(200).json({ isAuthenticated });
+        
+        if (!isAuthenticated) {
+            return res.status(401).json({ error: 'Invalid password' });
+        }
+
+        // Generate JWT token
+        const token = jwt.sign(
+            { username, role: 'admin' },
+            process.env.JWT_SECRET || 'your_jwt_secret_key',
+            { expiresIn: '7d' }
+        );
+
+        res.status(200).json({ 
+            isAuthenticated: true, 
+            token, 
+            username,
+            role: 'admin'
+        });
     } catch (error) {
         res.status(500).json({ error: 'Error authenticating admin' });
     }
@@ -493,7 +512,26 @@ const passengerAuthentication = async (req, res) => {
 
         // Compare the hashed password
         const isAuthenticated = await bcrypt.compare(password, passenger.hashedPassword);
-        res.status(200).json({ isAuthenticated });
+        
+        if (!isAuthenticated) {
+            return res.status(401).json({ error: 'Invalid password' });
+        }
+
+        // Generate JWT token
+        const token = jwt.sign(
+            { username, role: 'passenger' },
+            process.env.JWT_SECRET || 'your_jwt_secret_key',
+            { expiresIn: '7d' }
+        );
+
+        res.status(200).json({ 
+            isAuthenticated: true, 
+            token, 
+            username,
+            role: 'passenger',
+            name: passenger.name,
+            email: passenger.email
+        });
     } catch (error) {
         res.status(500).json({error: 'Error authenticating passenger'});
     }
@@ -1079,6 +1117,98 @@ const bookItinerary = async (req, res) => {
     }
 };
 
+// Search cities by partial match for suggestions
+const searchCities = async (req, res) => {
+    try {
+        const { query } = req.query;
+        
+        if (!query || query.trim().length === 0) {
+            return res.status(200).json([]);
+        }
+
+        // Search for cities that start with the query (case-insensitive)
+        const cities = await Airport.find({
+            city: { $regex: `^${query}`, $options: 'i' }
+        }).select('city country -_id').limit(10);
+
+        // Remove duplicates by city name
+        const uniqueCities = Array.from(
+            new Map(cities.map(city => [city.city, city])).values()
+        );
+
+        res.status(200).json(uniqueCities);
+    } catch (error) {
+        res.status(500).json({ error: 'Error searching cities' });
+    }
+};
+
+// Save a search to recent searches for a passenger
+const saveRecentSearch = async (req, res) => {
+    try {
+        const { username, from, to } = req.query;
+
+        const passenger = await Passenger.findOne({ username });
+        if (!passenger) {
+            return res.status(404).json({ error: 'Passenger not found' });
+        }
+
+        // Add to recent searches (limit to 10 most recent)
+        passenger.recentSearches.unshift({ from, to, searchDate: new Date() });
+        
+        // Keep only unique searches, removing duplicates
+        const uniqueSearches = [];
+        const seen = new Set();
+        for (const search of passenger.recentSearches) {
+            const key = `${search.from}-${search.to}`;
+            if (!seen.has(key)) {
+                seen.add(key);
+                uniqueSearches.push(search);
+            }
+        }
+        passenger.recentSearches = uniqueSearches.slice(0, 10);
+        await passenger.save();
+
+        res.status(200).json({ message: 'Search saved', recentSearches: passenger.recentSearches });
+    } catch (error) {
+        res.status(500).json({ error: 'Error saving search' });
+    }
+};
+
+// Get recent searches for a passenger
+const getRecentSearches = async (req, res) => {
+    try {
+        const { username } = req.query;
+
+        const passenger = await Passenger.findOne({ username });
+        if (!passenger) {
+            return res.status(404).json({ error: 'Passenger not found' });
+        }
+
+        res.status(200).json(passenger.recentSearches);
+    } catch (error) {
+        res.status(500).json({ error: 'Error retrieving recent searches' });
+    }
+};
+
+// Clear recent searches for a passenger
+const clearRecentSearches = async (req, res) => {
+    try {
+        const { username } = req.query;
+
+        const passenger = await Passenger.findOne({ username });
+        if (!passenger) {
+            return res.status(404).json({ error: 'Passenger not found' });
+        }
+
+        passenger.recentSearches = [];
+        await passenger.save();
+
+        res.status(200).json({ message: 'Recent searches cleared' });
+    } catch (error) {
+        res.status(500).json({ error: 'Error clearing recent searches' });
+    }
+};
+
 module.exports = {
     searchMultiCityFlights,
     bookItinerary,
@@ -1117,6 +1247,9 @@ module.exports = {
     cancelledBookings,
     dailyFlight,
     weeklyFlight,
-    FlightbyDate
-
+    FlightbyDate,
+    searchCities,
+    saveRecentSearch,
+    getRecentSearches,
+    clearRecentSearches
 };

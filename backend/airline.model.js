@@ -121,6 +121,13 @@ const PassengerSchema = new mongoose.Schema(
                     default: 'confirmed'
                 }
             }
+        ],
+        recentSearches: [
+            {
+                from: { type: String, required: true },
+                to: { type: String, required: true },
+                searchDate: { type: Date, default: Date.now }
+            }
         ]
     }
 );
