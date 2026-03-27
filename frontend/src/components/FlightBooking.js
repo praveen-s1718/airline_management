@@ -2,7 +2,10 @@ import React, { useState , useEffect} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightArrowLeft, faShieldAlt, faClock, faHeadset, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import CustomSelect from './CustomSelect';
+import DatePicker from './DatePicker';
 import { useNavigate } from 'react-router-dom';
+
+const API_BASE_URL = 'http://localhost:3000/api';
 
 const FlightBooking = () => {
     const [from, setFrom] = useState('Select a City');
@@ -13,7 +16,7 @@ const FlightBooking = () => {
     const [fromSearch, setFromSearch] = useState('');
     const [toSearch, setToSearch] = useState('');
     const [departDate, setDepartDate] = useState('');
-    const [returnDate] = useState('');
+    const [returnDate, setReturnDate] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [cities, setCities] = useState([]);
     const navigate = useNavigate();
@@ -26,7 +29,7 @@ const FlightBooking = () => {
     useEffect(() => {
         const fetchCities = async () => {
             try {
-                const response = await fetch('https://airline-management-tco0.onrender.com/api/airports');
+                const response = await fetch(`${API_BASE_URL}/airports`);
                 const data = await response.json();
                 const cityNames = data.map(airport => airport.city);
                 setCities(cityNames);
@@ -60,6 +63,40 @@ const FlightBooking = () => {
         }
     };
 
+    const swapCities = () => {
+        // Swap from and to
+        const tempFrom = from;
+        setFrom(to);
+        setTo(tempFrom);
+
+        // Swap search values
+        const tempFromSearch = fromSearch;
+        setFromSearch(toSearch);
+        setToSearch(tempFromSearch);
+
+        // Swap show options
+        const tempShowFromOptions = showFromOptions;
+        setShowFromOptions(showToOptions);
+        setShowToOptions(tempShowFromOptions);
+    };
+
+    const swapSegmentCities = (index) => {
+        const newSegments = [...multicitySegments];
+        const tempFrom = newSegments[index].from;
+        newSegments[index].from = newSegments[index].to;
+        newSegments[index].to = tempFrom;
+
+        const tempSearchFrom = newSegments[index].searchFrom;
+        newSegments[index].searchFrom = newSegments[index].searchTo;
+        newSegments[index].searchTo = tempSearchFrom;
+
+        const tempShowFrom = newSegments[index].showFrom;
+        newSegments[index].showFrom = newSegments[index].showTo;
+        newSegments[index].showTo = tempShowFrom;
+
+        setMulticitySegments(newSegments);
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         
@@ -76,7 +113,7 @@ const FlightBooking = () => {
                     to: seg.to,
                     date: seg.date
                 }));
-                fetch('https://airline-management-tco0.onrender.com/api/flights/multicity', {
+                fetch(`${API_BASE_URL}/flights/multicity`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ segments: segmentsPayload })
@@ -101,8 +138,13 @@ const FlightBooking = () => {
             setErrorMessage("Please fill in all the required fields !!");
             return;
         }
+
+        if (ways === 'Round Trip' && !returnDate) {
+            setErrorMessage("Please select a return date for round trip !!");
+            return;
+        }
         try {
-            fetch(`https://airline-management-tco0.onrender.com/api/flightsavailable?from=${from}&to=${to}&startDate=${departDate}&endDate=${returnDate}&tripType=${ways}`)
+            fetch(`${API_BASE_URL}/flightsavailable?from=${from}&to=${to}&startDate=${departDate}&endDate=${returnDate}&tripType=${ways}`)
                 .then((response) => response.json())
                 .then((data) => {
                     localStorage.setItem('flightSearchResults', JSON.stringify(data));
@@ -199,7 +241,12 @@ const FlightBooking = () => {
                                                 setSearch={(val) => handleSegmentChange(index, 'searchFrom', val)}
                                                 filteredCities={cities.filter(city => city.toLowerCase().includes(seg.searchFrom.toLowerCase()))}
                                             />
-                                            <FontAwesomeIcon icon={faArrowRightArrowLeft} className="double-arrow" />
+                                            <FontAwesomeIcon 
+                                                icon={faArrowRightArrowLeft} 
+                                                className="double-arrow"
+                                                onClick={() => swapSegmentCities(index)}
+                                                style={{ cursor: 'pointer' }}
+                                            />
                                             <CustomSelect
                                                 label="To"
                                                 selected={seg.to}
@@ -212,12 +259,10 @@ const FlightBooking = () => {
                                             />
                                         </div>
                                         <div className="date-box">
-                                            <span className="date-label">Travel Date</span>
-                                            <input
-                                                type="date"
-                                                className="date-field"
+                                            <DatePicker
+                                                label="Travel Date"
                                                 value={seg.date}
-                                                onChange={(e) => handleSegmentChange(index, 'date', e.target.value)}
+                                                onChange={(date) => handleSegmentChange(index, 'date', date)}
                                             />
                                         </div>
                                     </div>
@@ -230,37 +275,53 @@ const FlightBooking = () => {
                             </div>
                         ) : (
                             <>
-                                <div className="lower-part-1">
-                                    <CustomSelect
-                                        label="From"
-                                        selected={from}
-                                        setSelected={setFrom}
-                                        showOptions={showFromOptions}
-                                        setShowOptions={setShowFromOptions}
-                                        search={fromSearch}
-                                        setSearch={setFromSearch}
-                                        filteredCities={filteredFromCities}
+                                <div className="booking-fields-row">
+                                    <div className="booking-field from-field">
+                                        <CustomSelect
+                                            label="From"
+                                            selected={from}
+                                            setSelected={setFrom}
+                                            showOptions={showFromOptions}
+                                            setShowOptions={setShowFromOptions}
+                                            search={fromSearch}
+                                            setSearch={setFromSearch}
+                                            filteredCities={filteredFromCities}
+                                        />
+                                    </div>
+                                    <FontAwesomeIcon 
+                                        icon={faArrowRightArrowLeft} 
+                                        className="double-arrow-inline"
+                                        onClick={swapCities}
+                                        style={{ cursor: 'pointer' }}
                                     />
-                                    <FontAwesomeIcon icon={faArrowRightArrowLeft} className="double-arrow" />
-                                    <CustomSelect
-                                        label="To"
-                                        selected={to}
-                                        setSelected={setTo}
-                                        showOptions={showToOptions}
-                                        setShowOptions={setShowToOptions}
-                                        search={toSearch}
-                                        setSearch={setToSearch}
-                                        filteredCities={filteredToCities}
-                                    />
-                                </div>
-                                <div className="date-box">
-                                    <span className="date-label">Travel Date</span>
-                                    <input
-                                        type="date"
-                                        className="date-field"
-                                        value={departDate}
-                                        onChange={(e) => setDepartDate(e.target.value)}
-                                    />
+                                    <div className="booking-field to-field">
+                                        <CustomSelect
+                                            label="To"
+                                            selected={to}
+                                            setSelected={setTo}
+                                            showOptions={showToOptions}
+                                            setShowOptions={setShowToOptions}
+                                            search={toSearch}
+                                            setSearch={setToSearch}
+                                            filteredCities={filteredToCities}
+                                        />
+                                    </div>
+                                    <div className="booking-field date-field-wrapper">
+                                        <DatePicker
+                                            label="Departure"
+                                            value={departDate}
+                                            onChange={setDepartDate}
+                                        />
+                                    </div>
+                                    {ways === 'Round Trip' && (
+                                        <div className="booking-field date-field-wrapper">
+                                            <DatePicker
+                                                label="Return"
+                                                value={returnDate}
+                                                onChange={setReturnDate}
+                                            />
+                                        </div>
+                                    )}
                                 </div>
                             </>
                         )}

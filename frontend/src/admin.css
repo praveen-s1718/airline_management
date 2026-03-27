@@ -8,6 +8,35 @@
     font-size: 16px;
 }
 
+.admin-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logout-button {
+    padding: 0.6rem 1.2rem;
+    background-color: #dc3545;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.logout-button:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+}
+
+.logout-button:active {
+    transform: translateY(0);
+}
+
 .main_4 {
     padding: 20px;
     background-color: #f7f8fa;

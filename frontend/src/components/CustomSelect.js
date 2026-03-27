@@ -1,33 +1,105 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const CustomSelect = ({ label, selected, setSelected, showOptions, setShowOptions, search, setSearch, filteredCities }) => {
+    const [highlightedIndex, setHighlightedIndex] = useState(-1);
+
+    // When dropdown closes, clear the search and show selected value
+    useEffect(() => {
+        if (!showOptions && search === '') {
+            setHighlightedIndex(-1);
+        }
+    }, [showOptions, search]);
+
+    const handleCitySelect = (city) => {
+        setSelected(city);
+        setSearch('');
+        setShowOptions(false);
+        setHighlightedIndex(-1);
+    };
+
+    const handleInputChange = (e) => {
+        const value = e.target.value;
+        setSearch(value);
+        setShowOptions(true); // Always keep dropdown open when typing
+        
+        // Clear selection when user types anything or clears the field
+        if (selected !== 'Select a City') {
+            setSelected('Select a City');
+        }
+    };
+
+    const handleKeyDown = (e) => {
+        if (!showOptions) {
+            if (e.key === 'ArrowDown' || e.key === 'Enter') {
+                e.preventDefault();
+                setShowOptions(true);
+            }
+            return;
+        }
+
+        switch (e.key) {
+            case 'ArrowDown':
+                e.preventDefault();
+                setHighlightedIndex(prev => 
+                    prev < filteredCities.length - 1 ? prev + 1 : 0
+                );
+                break;
+            case 'ArrowUp':
+                e.preventDefault();
+                setHighlightedIndex(prev => 
+                    prev > 0 ? prev - 1 : filteredCities.length - 1
+                );
+                break;
+            case 'Enter':
+                e.preventDefault();
+                if (highlightedIndex >= 0 && filteredCities[highlightedIndex]) {
+                    handleCitySelect(filteredCities[highlightedIndex]);
+                }
+                break;
+            case 'Escape':
+                e.preventDefault();
+                setShowOptions(false);
+                break;
+            default:
+                break;
+        }
+    };
+
+    const displayValue = search || (selected !== 'Select a City' ? selected : '');
+
     return (
         <div className="custom-select-container" onClick={(e) => e.stopPropagation()}>
-            <div className="custom-select" onClick={() => setShowOptions(!showOptions)}>
+            <div className="custom-select">
                 <p id="from-to">{label}</p>
-                <div className="select-selected">{selected}</div>
+                <input
+                    type="text"
+                    className="select-selected-input"
+                    placeholder="Select a City"
+                    value={displayValue}
+                    onChange={handleInputChange}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        setShowOptions(true);
+                    }}
+                    onFocus={() => setShowOptions(true)}
+                    onKeyDown={handleKeyDown}
+                />
                 {showOptions && (
                     <div className="select-items">
-                        <input
-                            type="text"
-                            className="select-search"
-                            placeholder="Search..."
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
-                            onClick={(e) => e.stopPropagation()}
-                        />
-                        {filteredCities.map(city => (
-                            <div
-                                key={city}
-                                className="select-item"
-                                onClick={() => {
-                                    setSelected(city);
-                                    setShowOptions(false);
-                                }}
-                            >
-                                {city}
-                            </div>
-                        ))}
+                        {filteredCities && filteredCities.length > 0 ? (
+                            filteredCities.map((city, index) => (
+                                <div
+                                    key={city}
+                                    className={`select-item ${highlightedIndex === index ? 'highlighted' : ''}`}
+                                    onClick={() => handleCitySelect(city)}
+                                    onMouseEnter={() => setHighlightedIndex(index)}
+                                >
+                                    {city}
+                                </div>
+                            ))
+                        ) : (
+                            <div className="select-item-no-results">No cities found</div>
+                        )}
                     </div>
                 )}
             </div>

@@ -57,7 +57,7 @@ const AppContent = ({ isLoggedIn, setIsLoggedIn }) => {
                 <Route exact path='/CheckIn' element={<CheckIn/>} />
                 <Route exact path='/RR' element={<ReviewForm/>} />
                 <Route exact path='/Reviews_Ratings' element={<Reviews/>} />
-                <Route exact path='/Admin' element={<Admin/>} />
+                <Route exact path='/Admin' element={<Admin setIsLoggedIn={setIsLoggedIn}/>} />
                 <Route exact path='/FlightStatus' element={<FlightStatus/>} />
             </Routes>
         </div>
