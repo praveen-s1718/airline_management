@@ -122,7 +122,7 @@ const Confirmation = () => {
                 <div className="dot"></div>
                 <div className="line"></div>
                 <div className="plane">&#9992;</div>
-                <div className="flight_duration">{info.duration} minutes</div>
+                <div className="flight_duration">{info.duration} hours</div>
               </div>
               <div className="to_details">
                 <div className="time">
@@ -165,9 +165,6 @@ const Confirmation = () => {
           <p className="passengerDetails">Seat Selected : {seatSelected}</p>
           <div id="confirmationDetails">
             <div className="confirmButtonWrapper">
-              <p className="passengerDetails" id="details">
-                Click here to Confirm Your Booking :{" "}
-              </p>
               <button
                 onClick={handleClick}
                 className="button2"

@@ -85,7 +85,7 @@ export default function MultiCityFlightSelect({ isLoggedIn }) {
                           <div className="dot_1" />
                           <div className="line_1" />
                           <div className="plane_1">✈</div>
-                          <div className="flight_duration_1">{flight.duration} minutes</div>
+                          <div className="flight_duration_1">{flight.duration} hours</div>
                         </div>
                         <div className="to_details_1">
                           <div className="time_1">

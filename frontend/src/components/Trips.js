@@ -148,7 +148,7 @@ const Trips = () => {
                               <div className="dot"></div>
                               <div className="line"></div>
                               <div className="plane">&#9992;</div>
-                              <div className="flight_duration">{booking.duration} minutes</div>
+                              <div className="flight_duration">{booking.duration} hours</div>
                             </div>
                             <div className="to_details">
                               <div className="time">
@@ -238,7 +238,7 @@ const Trips = () => {
                               <div className="dot"></div>
                               <div className="line"></div>
                               <div className="plane">&#9992;</div>
-                              <div className="flight_duration">{booking.duration} minutes</div>
+                              <div className="flight_duration">{booking.duration} hours</div>
                             </div>
                             <div className="to_details">
                               <div className="time">
@@ -321,7 +321,7 @@ const Trips = () => {
                               <div className="dot"></div>
                               <div className="line"></div>
                               <div className="plane">&#9992;</div>
-                              <div className="flight_duration">{booking.duration} minutes</div>
+                              <div className="flight_duration">{booking.duration} hours</div>
                             </div>
                             <div className="to_details">
                               <div className="time">
