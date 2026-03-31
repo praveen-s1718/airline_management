@@ -1,7 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 const CustomSelect = ({ label, selected, setSelected, showOptions, setShowOptions, search, setSearch, filteredCities }) => {
     const [highlightedIndex, setHighlightedIndex] = useState(-1);
+    const containerRef = useRef(null);
+
+    // Close dropdown when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            if (containerRef.current && !containerRef.current.contains(e.target)) {
+                setShowOptions(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, [setShowOptions]);
 
     // When dropdown closes, clear the search and show selected value
     useEffect(() => {
@@ -68,7 +80,7 @@ const CustomSelect = ({ label, selected, setSelected, showOptions, setShowOption
     const displayValue = search || (selected !== 'Select a City' ? selected : '');
 
     return (
-        <div className="custom-select-container" onClick={(e) => e.stopPropagation()}>
+        <div className="custom-select-container" ref={containerRef}>
             <div className="custom-select">
                 <p id="from-to">{label}</p>
                 <input
@@ -77,10 +89,7 @@ const CustomSelect = ({ label, selected, setSelected, showOptions, setShowOption
                     placeholder="Select a City"
                     value={displayValue}
                     onChange={handleInputChange}
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        setShowOptions(true);
-                    }}
+                    onClick={() => setShowOptions(true)}
                     onFocus={() => setShowOptions(true)}
                     onKeyDown={handleKeyDown}
                 />
@@ -108,3 +117,4 @@ const CustomSelect = ({ label, selected, setSelected, showOptions, setShowOption
 };
 
 export default CustomSelect;
+
